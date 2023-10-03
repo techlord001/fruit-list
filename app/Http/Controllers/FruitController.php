@@ -40,16 +40,16 @@ class FruitController extends Controller
         return redirect()->route('fruits.index');
     }
 
-    public function updateFruitFromJson(): void
+    public static function updateFruitFromJson(): void
     {
         $fruits = Http::get('https://dev.shepherds-mountain.appoly.io/fruit.json')['menu_items'];
 
         foreach ($fruits as $fruit) {
-            $this->saveFruit($fruit);
+            FruitController::saveFruit($fruit);
         }
     }
 
-    private function saveFruit($fruit, $parentId = null)
+    private static function saveFruit($fruit, $parentId = null)
     {
         // Save the current fruit
         $newFruit = Fruit::updateOrCreate(
@@ -59,7 +59,7 @@ class FruitController extends Controller
         // Recursively save children
         if (isset($fruit['children']) && is_array($fruit['children'])) {
             foreach ($fruit['children'] as $child) {
-                $this->saveFruit($child, $newFruit->id);
+                FruitController::saveFruit($child, $newFruit->id);
             }
         }
     }
