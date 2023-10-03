@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FruitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Routes for fruits
+Route::get('/fruits', [FruitController::class, 'index'])->name('fruits.index');

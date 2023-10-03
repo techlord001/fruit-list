@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Fruit extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['label', 'parent_id']; 
+
+    public function children()
+    {
+        return $this->hasMany(Fruit::class, 'parent_id');
+    }
 }
