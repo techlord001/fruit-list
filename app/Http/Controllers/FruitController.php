@@ -20,6 +20,19 @@ class FruitController extends Controller
         return view('fruits.index', compact('fruits'));
     }
 
+    public function edit($id)
+    {
+        $fruit = Fruit::findOrFail($id);
+        return view('fruits.edit', compact('fruit'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $fruit = Fruit::findOrFail($id);
+        $fruit->update($request->all());
+        return redirect()->route('fruits.index');
+    }
+
     public function updateFruitFromJson(): void
     {
         $fruits = Http::get('https://dev.shepherds-mountain.appoly.io/fruit.json')['menu_items'];

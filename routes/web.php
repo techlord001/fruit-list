@@ -20,3 +20,5 @@ Route::get('/', function () {
 
 // Routes for fruits
 Route::get('/fruits', [FruitController::class, 'index'])->name('fruits.index');
+Route::get('/fruits/{id}', [FruitController::class, 'edit'])->name('fruits.edit');
+Route::put('/fruits/{id}', [FruitController::class, 'update'])->name('fruits.update');
