@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('fruits', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('label');
+            $table->integer('parent_id')->nullable();
         });
     }
 
