@@ -42,17 +42,17 @@ class FruitController extends Controller
         }
     }
 
-    private function saveFruit($data, $parentId = null)
+    private function saveFruit($fruit, $parentId = null)
     {
         // Save the current fruit
-        $fruit = Fruit::updateOrCreate(
-            ['label' => $data['label'], 'parent_id' => $parentId],
+        $newFruit = Fruit::updateOrCreate(
+            ['label' => $fruit['label'], 'parent_id' => $parentId],
         );
 
         // Recursively save children
-        if (isset($data['children']) && is_array($data['children'])) {
-            foreach ($data['children'] as $child) {
-                $this->saveFruit($child, $fruit->id);
+        if (isset($fruit['children']) && is_array($fruit['children'])) {
+            foreach ($fruit['children'] as $child) {
+                $this->saveFruit($child, $newFruit->id);
             }
         }
     }
