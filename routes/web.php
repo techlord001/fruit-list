@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('/fruits', [FruitController::class, 'index'])->name('fruits.index');
 Route::get('/fruits/{id}', [FruitController::class, 'edit'])->name('fruits.edit');
 Route::put('/fruits/{id}', [FruitController::class, 'update'])->name('fruits.update');
+Route::delete('/fruits/{id}', [FruitController::class, 'destroy'])->name('fruits.destroy');
