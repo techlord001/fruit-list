@@ -9,7 +9,7 @@ class Fruit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['label', 'parent_id']; 
+    protected $fillable = ['label', 'parent_id', 'unique_id']; 
 
     public function children()
     {

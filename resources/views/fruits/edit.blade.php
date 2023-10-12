@@ -1,3 +1,4 @@
+<!-- resources/views/fruits/edit.blade.php -->
 <h1>Edit Fruit</h1>
 
 <form method="post" action="{{ route('fruits.update', ['id' => $fruit->id]) }}">

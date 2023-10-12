@@ -1,3 +1,4 @@
+<!-- resources/views/fruits/partials/fruit.blade.php -->
 <li>{{ $fruit->label }}
     @if ($fruit->children->isNotEmpty())
 

@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\FruitController;
+use App\Services\FruitService;
 use Illuminate\Console\Command;
 
 class UpdateFruits extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
@@ -21,12 +22,21 @@ class UpdateFruits extends Command
      */
     protected $description = 'Call updateFruitFromJson method in FruitController to update fruits from JSON';
 
+    protected $fruitService;
+
+    public function __construct(FruitService $fruitService)
+    {
+        parent::__construct();
+
+        $this->fruitService = $fruitService;
+    }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        FruitController::updateFruitFromJson();
+        $this->fruitService->updateFruitFromJson();
 
         $this->info('Fruits updated successfully!');
     }
